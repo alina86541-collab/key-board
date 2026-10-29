@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Клавиатурный тренажёр</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">Клавиатурный <span class="logo-accent">тренажёр</span></div>
+      <div class="header-right">
+        <div class="header-train" id="header-train">
+          <button class="btn-ghost" id="train-restart" title="Перезапустить">Перезапустить</button>
+          <div class="train-timer" id="train-timer">0</div>
+        </div>
+        <button class="settings-btn" id="settings-open" title="Настройки">⚙️</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Home -->
+  <section class="screen" id="screen-home">
+    <div class="card home-card">
+      <h1 class="big-title">Готов к тренировке?</h1>
+      <p class="subtitle">Набери как можно больше слов за выбранное время.</p>
+      <div class="settings-summary">
+        <div class="chip"><span class="chip-label">Язык</span><span class="chip-value" id="chip-lang">English</span></div>
+        <div class="chip"><span class="chip-label">Сложность</span><span class="chip-value" id="chip-diff">Лёгкий</span></div>
+        <div class="chip"><span class="chip-label">Время</span><span class="chip-value" id="chip-time">30 сек</span></div>
+        <div class="chip"><span class="chip-label">Клавиатура</span><span class="chip-value" id="chip-keyboard">Вкл</span></div>
+      </div>
+      <button class="btn-primary btn-big" id="btn-start">Начать тренировку</button>
+      <button class="btn-ghost" id="btn-stats">Моя статистика</button>
+    </div>
+  </section>
+
+  <!-- Settings -->
+  <section class="screen" id="screen-settings">
+    <div class="card">
+      <div class="screen-header"><button class="btn-back" id="settings-back">← Назад</button><h2>Настройки</h2></div>
+      <div class="form-group">
+        <label class="form-label">Язык слов</label>
+        <div class="segmented" id="lang-segmented">
+          <button class="seg-btn active" data-lang="en">English</button>
+          <button class="seg-btn" data-lang="ru">Русский</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Сложность</label>
+        <div class="segmented" id="diff-segmented">
+          <button class="seg-btn active" data-diff="easy">Лёгкий</button>
+          <button class="seg-btn" data-diff="medium">Средний</button>
+          <button class="seg-btn" data-diff="hard">Сложный</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Время тренировки</label>
+        <div class="segmented" id="time-segmented">
+          <button class="seg-btn active" data-time="30">30 секунд</button>
+          <button class="seg-btn" data-time="120">2 минуты</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Подсказка клавиатуры</label>
+        <div class="segmented" id="keyboard-segmented">
+          <button class="seg-btn active" data-kb="1">Вкл</button>
+          <button class="seg-btn" data-kb="0">Выкл</button>
+        </div>
+      </div>
+      <button class="btn-primary" id="settings-save">Сохранить</button>
+    </div>
+  </section>
+
+  <!-- Training -->
+  <section class="screen" id="screen-training">
+    <div class="train-wrap">
+      <div class="word-panel" id="word-panel"></div>
+      <input type="text" id="typing-input" class="hidden-input" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="60" tabindex="-1">
+      <div id="keyboard"></div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="screen" id="screen-results">
+    <div class="card">
+      <div class="screen-header"><button class="btn-back" id="results-back">← Назад</button><h2>Итоги</h2></div>
+      <div class="results-grid">
+        <div class="result-tile"><div class="tile-label">Слов</div><div class="tile-value" id="res-words">0</div></div>
+        <div class="result-tile"><div class="tile-label">Ошибки</div><div class="tile-value" id="res-errors">0</div></div>
+        <div class="result-tile"><div class="tile-label">Точность</div><div class="tile-value" id="res-accuracy">0%</div></div>
+        <div class="result-tile"><div class="tile-label">Скорость</div><div class="tile-value" id="res-wpm">0</div></div>
+        <div class="result-tile"><div class="tile-label">Символов</div><div class="tile-value" id="res-chars">0</div></div>
+      </div>
+      <div class="results-actions">
+        <button class="btn-primary" id="btn-again">Ещё раз</button>
+        <button class="btn-ghost" id="btn-home">На главную</button>
+      </div>
+      <div class="streak-info" id="streak-info"></div>
+      <div class="graph-wrap"><h3>Прогресс по дням</h3><canvas id="progress-chart" width="700" height="300"></canvas><div class="empty-state" id="empty-graph" style="display:none"><p>Начни тренировку — здесь появится график прогресса.</p></div></div>
+    </div>
+  </section>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
